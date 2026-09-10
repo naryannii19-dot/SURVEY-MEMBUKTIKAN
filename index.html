@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>SURVEY MEMBUKTIKAN!</title>
+
+    <link rel="stylesheet"
+        href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         MENU UTAMA
+    ========================== -->
+
+    <section id="menuScreen"
+        class="screen active">
+
+        <div class="menu-container">
+
+            <div class="logo">
+                SURVEY
+                <span>MEMBUKTIKAN!</span>
+            </div>
+
+            <p class="subtitle">
+                Game Show Edukatif Akuntansi
+            </p>
+
+            <button
+                class="btn btn-primary big-btn"
+                onclick="startGame()">
+
+                ▶ MULAI PERMAINAN
+
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="showQuestionList()">
+
+                📋 DAFTAR SOAL
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GAME SCREEN
+    ========================== -->
+
+    <section id="gameScreen"
+        class="screen">
+
+        <!-- HEADER -->
+
+        <header class="game-header">
+
+            <div class="game-title">
+
+                SURVEY
+                <span>MEMBUKTIKAN!</span>
+
+            </div>
+
+
+            <div class="round-box">
+
+                RONDE
+
+                <strong id="roundNumber">
+                    1
+                </strong>
+
+            </div>
+
+
+            <div class="score-box">
+
+                SKOR
+
+                <strong id="score">
+                    0
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- PERTANYAAN -->
+
+        <main class="game-container">
+
+            <div class="question-card">
+
+                <div class="question-label">
+                    PERTANYAAN
+                </div>
+
+                <h1 id="questionText">
+                    Pertanyaan
+                </h1>
+
+            </div>
+
+
+            <!-- =========================
+                 JAWABAN UTAMA
+            ========================== -->
+
+            <div class="section-title">
+
+                <span>
+                    JAWABAN SURVEI
+                </span>
+
+            </div>
+
+
+            <div id="answerBoard"
+                class="answer-board">
+
+                <!-- Diisi JavaScript -->
+
+            </div>
+
+
+            <!-- =========================
+                 JAWABAN OPSIONAL
+            ========================== -->
+
+            <div class="section-title optional-title">
+
+                <span>
+                    JAWABAN OPSIONAL
+                </span>
+
+                <small>
+                    BENAR • 0 POIN
+                </small>
+
+            </div>
+
+
+            <div id="optionalBoard"
+                class="optional-board">
+
+                <!-- Diisi JavaScript -->
+
+            </div>
+
+
+            <!-- =========================
+                 INPUT JAWABAN
+            ========================== -->
+
+            <div class="answer-input-area">
+
+                <input
+                    type="text"
+                    id="studentAnswer"
+                    placeholder="Ketik jawaban murid..."
+                    autocomplete="off">
+
+                <button
+                    class="check-btn"
+                    onclick="checkAnswer()">
+
+                    🔍 CEK JAWABAN
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 KONTROL
+            ========================== -->
+
+            <div id="revealButtons"
+                class="reveal-buttons">
+
+                <!-- Tombol reveal -->
+
+            </div>
+
+
+            <div class="control-panel">
+
+                <button
+                    class="btn btn-warning"
+                    onclick="resetRound()">
+
+                    🔄 RESET RONDE
+
+                </button>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="nextRound()">
+
+                    ➡ RONDE BERIKUTNYA
+
+                </button>
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="toggleFullscreen()">
+
+                    ⛶ FULLSCREEN
+
+                </button>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         DAFTAR SOAL
+    ========================== -->
+
+    <section id="questionListScreen"
+        class="screen">
+
+        <div class="list-container">
+
+            <h1>
+                📋 DAFTAR SOAL
+            </h1>
+
+            <div id="questionList">
+
+                <!-- Diisi JavaScript -->
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="showScreen(menuScreen)">
+
+                ← KEMBALI
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MODAL JAWABAN
+    ========================== -->
+
+    <div id="wrongModal"
+        class="modal">
+
+        <div id="answerModalContent"
+            class="modal-content wrong-modal">
+
+            <div id="answerModalIcon"
+                class="wrong-icon">
+
+                ✕
+
+            </div>
+
+            <h2 id="answerModalTitle">
+
+                BELUM DITEMUKAN!
+
+            </h2>
+
+            <p id="wrongText">
+
+                Jawaban belum ada dalam hasil survei.
+
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="closeWrongModal()">
+
+                COBA LAGI
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL RONDE SELESAI
+    ========================== -->
+
+    <div id="completeModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <div class="complete-icon">
+                🎉
+            </div>
+
+            <h2>
+                RONDE SELESAI!
+            </h2>
+
+            <p>
+                Semua jawaban utama
+                telah ditemukan.
+            </p>
+
+            <div class="round-score">
+
+                +<span id="roundScore">
+                    0
+                </span>
+
+                POIN
+
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="closeCompleteModal()">
+
+                LANJUTKAN
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
